@@ -34,7 +34,6 @@ describe('API endpoints', () => {
         });
     });
 
-
     it('GET /topics/:topic_id/articles returns an object of all articles related to that topic', () => {
       return request
         .get('/api/articles')
@@ -88,6 +87,62 @@ describe('API endpoints', () => {
           expect(res.body.comments.length).to.equal(3);
           return;
   
+        });
+    });
+
+    it('PUT will increase the number of votes an article has.', () => {
+      const articleId = docs.articles[0]._id;
+      return request
+        .put(`/api/articles/${articleId}?vote=up`)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.article.votes).to.equal(1);
+          return;
+  
+        });
+    });
+
+    it('PUT will decrease the number of votes an article has.', () => {
+      const articleId = docs.articles[0]._id;
+      return request
+        .put(`/api/articles/${articleId}?vote=down`)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.article.votes).to.equal(-1);
+          return;
+    
+        });
+    });
+
+    it('PUT will increase the number of votes a comment has.', () => {
+      const commentId = docs.comments[0]._id;
+  
+      return request
+        .put(`/api/comments/${commentId}?vote=up`)
+        .expect(200)
+        .then(res => {
+  
+          expect(res.body).to.be.an('object');
+          expect(res.body.comment.votes).to.equal(1);
+          return;
+  
+        });
+    });
+
+    it('PUT will decrease the number of votes a comment has.', () => {
+      const commentId = docs.comments[0]._id;
+    
+      return request
+        .put(`/api/comments/${commentId}?vote=down`)
+        .expect(200)
+        .then(res => {
+    
+          expect(res.body).to.be.an('object');
+          expect(res.body.comment.votes).to.equal(-1);
+          return;
+    
         });
     });
   

@@ -60,6 +60,36 @@ describe('API endpoints', () => {
           return;
         });
     });
+
+    it('GET should return all of the comments from the article with the ID provided', () => {
+      const articleId = docs.articles[0]._id;
+  
+      return request
+        .get(`/api/articles/${articleId}/comments`)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.comments.length).to.equal(2);
+          return;
+        });
+    });
+
+    it('POST should create a new comment.', () => {
+      const articleId = docs.articles[0]._id;
+      return request
+        .post(`/api/articles/${articleId}/comments`)
+        .send({'body': 'Wooooop'})
+        .expect(201)
+        .then(() => {
+          return request.get(`/api/articles/${articleId}/comments`);
+        })
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.comments.length).to.equal(3);
+          return;
+  
+        });
+    });
   
 
   

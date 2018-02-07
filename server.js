@@ -7,6 +7,7 @@ let bodyParser = require('body-parser');
 let app = express();
 let config = require('./config');
 let db = config.DB[process.env.NODE_ENV] || process.env.DB;
+
 mongoose.Promise = Promise;
 
 mongoose.connect(db, {useMongoClient: true})
@@ -15,4 +16,13 @@ mongoose.connect(db, {useMongoClient: true})
 
 app.use(bodyParser.json());
 app.use('/api', router);
+
+// error handling function 
+
+app.use(function(err, req, res, next) {
+  console.log(err);
+  res.send({error: err.message});
+});
+
+
 module.exports = app;

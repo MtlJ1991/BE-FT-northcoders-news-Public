@@ -4,11 +4,12 @@ const comments = require('../models/comments');
 
 const getAllArticles = ((req, res, next ) => {
   articles.find().lean()
-    .then(topic => {
-      return res.json({
-        topic
-      });
-    });
+    .then(articles => {
+      return res.json({articles});
+    })
+    .then(articles => {
+      if(req.baseUrl !== '/api/articles') throw next;
+    }).catch(next);
 });
 
 
@@ -16,8 +17,13 @@ const getAllArticles = ((req, res, next ) => {
 const getCommentsForArticle = ((req, res, next) => {
   return comments.find({ belongs_to: req.params.article_id })
     .then(comments => {
-      res.json({ comments });
-    });
+      res.json({ comments }); 
+    })
+    .then(comments => {
+      if(comments === {}) {
+        throw next;
+      }
+    }).catch(next);
 });
 
 

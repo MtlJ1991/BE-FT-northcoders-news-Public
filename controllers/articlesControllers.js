@@ -38,11 +38,12 @@ const addCommetsToArticle = ((req, res, next) => {
 
 const changeNumOfVotes = ((req, res, next) => {
   return articles.findByIdAndUpdate(req.params.article_id).lean()
+
     .then(article => {
       if(req.query.vote === 'up') article.votes ++;
       else if(req.query.vote === 'down') article.votes --;
       res.status(200).json({article});
-    });
+    }).catch(next);
 
 });
 

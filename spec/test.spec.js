@@ -33,15 +33,13 @@ describe('API endpoints', () => {
         });
     });
 
-    it('GET /topics/:topic_id/articles returns an object of all articles related to that topic', () => {
+    it('GET /articles returns an object of all articles', () => {
       return request
         .get('/api/articles')
         .expect(200)
         .then((res) => {
           expect(res.body).to.be.an('object');
-          expect(Object.values(res.body).length).to.be.eql(1);
-          expect(Object.keys(res.body).length).to.be.eql(1);
-          expect(res.body.topic.length).to.be.eql(2);
+          expect(Object.values(res.body.articles).length).to.be.eql(2);
           return;
         });
     });

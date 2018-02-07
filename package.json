@@ -4,8 +4,9 @@
   "description": "### Background",
   "main": "config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "mocha spec/test.spec.js",
+    "start": "node index.js",
+    "dev": "nodemon listen.js"
   },
   "author": "",
   "license": "ISC",

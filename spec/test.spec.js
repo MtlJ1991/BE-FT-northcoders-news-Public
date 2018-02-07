@@ -145,6 +145,32 @@ describe('API endpoints', () => {
     
         });
     });
+
+    it('DELETE should remove a new comment.', () => {
+      const commentId = docs.comments[0]._id;      return request
+        .delete(`/api/comments/${commentId}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.eql({});
+          return;
+  
+        });
+    });
+
+    it('GET should return users by ID', () => {
+      const userId = docs.user.id;
+   
+      return request
+        .get(`/api/users/${userId}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.user.length).to.equal(0);
+          expect(Object.keys(res.body).length).to.be.eql(1);
+          return;
+        });
+    });
   
 
   

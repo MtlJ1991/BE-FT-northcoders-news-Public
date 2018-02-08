@@ -19,7 +19,7 @@ describe('API endpoints', () => {
   
   after(() => mongoose.disconnect());
   
-  describe('API endpoint /api/topics', () => {
+  describe('API endpoint /api/topics & /api/articles', () => {
     it('GET /topics returns an object of all topics', () => {
       return request
         .get('/api/topics')
@@ -112,55 +112,64 @@ describe('API endpoints', () => {
         });
     });
 
-    it('PUT will increase the number of votes a comment has.', () => {
-      const commentId = docs.comments[0]._id;
-      return request
-        .put(`/api/comments/${commentId}?vote=up`)
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object');
-          expect(res.body.comment.votes).to.equal(1);
-          return;
-  
-        });
-    });
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    it('PUT will decrease the number of votes a comment has.', () => {
-      const commentId = docs.comments[0]._id;
-      return request
-        .put(`/api/comments/${commentId}?vote=down`)
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object');
-          expect(res.body.comment.votes).to.equal(-1);
-          return;
+    describe('API endpoint /comments', () => {
+
+      it('PUT will increase the number of votes a comment has.', () => {
+        const commentId = docs.comments[0]._id;
+        return request
+          .put(`/api/comments/${commentId}?vote=up`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('object');
+            expect(res.body.comment.votes).to.equal(1);
+            return;
+  
+          });
+      });
+
+      it('PUT will decrease the number of votes a comment has.', () => {
+        const commentId = docs.comments[0]._id;
+        return request
+          .put(`/api/comments/${commentId}?vote=down`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('object');
+            expect(res.body.comment.votes).to.equal(-1);
+            return;
     
-        });
-    });
+          });
+      });
 
-    it('DELETE should remove a new comment.', () => {
-      const commentId = docs.comments[0]._id;      return request
-        .delete(`/api/comments/${commentId}`)
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object');
-          expect(res.body).to.eql({});
-          return;
+      it('DELETE should remove a new comment.', () => {
+        const commentId = docs.comments[0]._id;      return request
+          .delete(`/api/comments/${commentId}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.eql({});
+            return;
   
-        });
-    });
+          });
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    it('GET should return users by ID', () => {
-      const userId = docs.user.id;
-      return request
-        .get(`/api/users/${userId}`)
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object');
-          expect(res.body.user.length).to.equal(0);
-          expect(Object.keys(res.body).length).to.be.eql(1);
-          return;
+      describe('API endpoint /users/:user_id', () => {
+
+        it('GET should return users by ID', () => {
+          const userId = docs.user.id;
+          return request
+            .get(`/api/users/${userId}`)
+            .expect(200)
+            .then(res => {
+              expect(res.body).to.be.an('object');
+              expect(res.body.user.length).to.equal(0);
+              expect(Object.keys(res.body).length).to.be.eql(1);
+              return;
+            });
         });
+      });
     });
   });
 });

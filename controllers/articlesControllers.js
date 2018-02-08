@@ -3,27 +3,34 @@ const comments = require('../models/comments');
 
 
 const getAllArticles = ((req, res, next ) => {
+  
+
   articles.find().lean()
     .then(articles => {
-      return res.json({articles});
-    })
-    .then(articles => {
-      if(req.baseUrl !== '/api/articles') throw next;
-    }).catch(next);
+      return res.status(200).json({articles});
+    
+    }).catch(err => {
+      return next({
+        status: 404,
+        message: 'bad path!'
+      });
+    
+    });
 });
 
 
-
 const getCommentsForArticle = ((req, res, next) => {
+  console.log(res.status);
   return comments.find({ belongs_to: req.params.article_id })
     .then(comments => {
       res.json({ comments }); 
-    })
-    .then(comments => {
-      if(comments === {}) {
-        throw next;
-      }
-    }).catch(next);
+    }).catch(err => {
+      return next({
+        status: 404,
+        message: 'bad path!'
+      });
+  
+    });
 });
 
 

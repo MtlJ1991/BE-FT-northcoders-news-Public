@@ -20,8 +20,15 @@ app.use('/api', router);
 // error handling function 
 
 app.use(function(err, req, res, next) {
-  console.log(err);
   res.send({error: err.message});
+});
+
+app.use('/*', (req, res) => {
+  res.status(404).send('Page not found!');
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send({err});
 });
 
 

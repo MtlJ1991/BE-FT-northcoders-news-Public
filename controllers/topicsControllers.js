@@ -7,6 +7,12 @@ const getAllTopics = ((req, res, next) => {
     .then(topic => {
       return res.json({
         topic
+      }).catch(err => {
+        return next({
+          status: 404,
+          message: 'bad path!'
+        });
+      
       });
     });
 });
@@ -23,7 +29,13 @@ const getArticlesByTopic = ((req, res, next) => {
     .then(articles => {
       res.json({articles});
     })
-    .catch(console.error);
+    .catch(err => {
+      return next({
+        status: 404,
+        message: 'bad path!'
+      });
+    
+    });
 });
 
 module.exports = {

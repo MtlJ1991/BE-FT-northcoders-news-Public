@@ -18,9 +18,7 @@ const getAllArticles = ((req, res, next ) => {
     });
 });
 
-
 const getCommentsForArticle = ((req, res, next) => {
-  console.log(res.status);
   return comments.find({ belongs_to: req.params.article_id })
     .then(comments => {
       res.json({ comments }); 
@@ -39,6 +37,12 @@ const addCommetsToArticle = ((req, res, next) => {
   new comments(addedComment).save()
     .then(comment => {
       res.status(201).json({ comment });
+    }).catch(err => {
+      return next({
+        status: 204,
+        message: 'Invalid input!'
+      });
+    
     });
 });
 
@@ -50,7 +54,13 @@ const changeNumOfVotes = ((req, res, next) => {
       if(req.query.vote === 'up') article.votes ++;
       else if(req.query.vote === 'down') article.votes --;
       res.status(200).json({article});
-    }).catch(next);
+    }).catch(err => {
+      return next({
+        status: 204,
+        message: 'You have to vote either up or down!'
+      });
+    
+    });
 
 });
 

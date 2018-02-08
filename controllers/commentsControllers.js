@@ -14,7 +14,12 @@ const  deleteComment = ((req, res, next) => {
   return comments.findByIdAndRemove(req.params.comment_id).lean()
     .then(comment => {
       const commentId = req.params.comment_id;
-      res.send(` comment:${commentId} has been deleted`);
+      res.status(200).send(` comment:${commentId} has been deleted`);
+    }).catch(err => {
+      return next({
+        status: 204,
+        message: 'Comment not deleted!'
+      });
     });
 });
 

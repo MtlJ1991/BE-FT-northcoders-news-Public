@@ -184,7 +184,7 @@ describe('API endpoints', () => {
             });
         });
 
-        it('returns a 404 with an error message on an invalid GET request', () => {
+        it('returns a 400 with an error message on an invalid GET request', () => {
           return request
             .get('/api/articles/123/comments')
             .expect(400)
@@ -192,6 +192,20 @@ describe('API endpoints', () => {
               expect(res.status).to.equal(400);
               expect(res.text).to.equal('cast error - check url');
 
+            });
+        });
+
+        it('PUT will decrease the number of votes a comment has.', () => {
+          const commentId = docs.comments[0]._id;
+          return request
+            .put(`/api/comments/${commentId}?vote=dwn`)
+            .expect(400)
+            .then(res => {
+              expect(res.status).to.equal(400);
+              expect(res.text).to.equal('Invalid vote command, please vote up or down.');
+
+              return;
+      
             });
         });
   

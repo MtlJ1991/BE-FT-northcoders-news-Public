@@ -8,12 +8,7 @@ const getAllArticles = ((req, res, next ) => {
     .then(articles => {
       res.status(200).json({ articles });
       if(articles.length < 1) next({articles: 'error'});
-    }).catch(err => {
-      return next({
-        status: 404,
-        message: '404, Path not found!'
-      });
-    });
+    }).catch(next);
 });
 
 
@@ -22,7 +17,7 @@ const getCommentsForArticle = ((req, res, next) => {
   if (articleId.length !== 24) next({ error: 'invalid article name length' });
   comments.find({ belongs_to: articleId }, { __v: false })
     .then((comments) => {
-      if (comments.length === 0) next({ error: 'empty comment' });
+      if (comments.length === 0) next();
       return res.json({comments});
     })
     .catch(next);
@@ -46,13 +41,14 @@ const addCommetsToArticle = ((req, res, next) => {
 
 
 const changeNumOfVotes = ((req, res, next) => {
+  console.log(req.query)
   return articles.findByIdAndUpdate(req.params.article_id).lean()
-
     .then(article => {
       if(req.query.vote === 'up') article.votes ++;
       else if(req.query.vote === 'down') article.votes --;
+      else next();
       res.status(200).json({article});
-    }).catch(err => {
+    }).catch(next => {
       return next({
         status: 204,
         message: 'You have to vote either up or down!'

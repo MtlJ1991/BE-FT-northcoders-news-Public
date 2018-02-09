@@ -21,8 +21,14 @@ app.use('/api', router);
 
 
 app.use((err,req,res,next) => {
-  if (err.status === 404) {
+  if (err.message === 404) {
     res.status(404).send(err.message);
+    next();
+  }
+  // status: 400
+  // error.error = ???
+  if (err.message === 'Invalid vote command, please vote up or down.') {
+    res.status(400).send(err.message);
     next();
   }
     

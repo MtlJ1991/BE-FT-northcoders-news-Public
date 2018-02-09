@@ -30,12 +30,7 @@ const addCommetsToArticle = ((req, res, next) => {
   new comments(addedComment).save()
     .then(comment => {
       res.status(201).json({ comment });
-    }).catch(err => {
-      return next({
-        status: 404,
-        message: '404, Path not found!'
-      });
-    });
+    }).catch(next);
 });
 
 

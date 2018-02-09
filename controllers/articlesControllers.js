@@ -24,8 +24,6 @@ const getCommentsForArticle = ((req, res, next) => {
 });
 
 
-
-
 const addCommetsToArticle = ((req, res, next) => {
   const addedComment = { body: req.body.body, belongs_to: req.params.article_id };
   new comments(addedComment).save()
@@ -41,21 +39,14 @@ const addCommetsToArticle = ((req, res, next) => {
 
 
 const changeNumOfVotes = ((req, res, next) => {
-  console.log(req.query)
+  if ((req.query.vote !== 'up') && (req.query.vote !== 'down')) next({ message: 'Invalid vote command, please vote up or down.', status: 400 });
   return articles.findByIdAndUpdate(req.params.article_id).lean()
     .then(article => {
       if(req.query.vote === 'up') article.votes ++;
       else if(req.query.vote === 'down') article.votes --;
       else next();
-      res.status(200).json({article});
-    }).catch(next => {
-      return next({
-        status: 204,
-        message: 'You have to vote either up or down!'
-      });
-    
-    });
-
+      res.json({article});
+    }).catch(next);
 });
 
 

@@ -195,7 +195,7 @@ describe('API endpoints', () => {
             });
         });
 
-        it('PUT will decrease the number of votes a comment has.', () => {
+        it('returns a 400 error and message if an invalid query is passed on comment votes.', () => {
           const commentId = docs.comments[0]._id;
           return request
             .put(`/api/comments/${commentId}?vote=dwn`)
@@ -203,9 +203,21 @@ describe('API endpoints', () => {
             .then(res => {
               expect(res.status).to.equal(400);
               expect(res.text).to.equal('Invalid vote command, please vote up or down.');
-
               return;
       
+            });
+        });
+
+        it('returns a 400 error and message if an invalid query is passed on article votes.', () => {
+          const commentId = docs.comments[0]._id;
+          return request
+            .put(`/api/comments/${commentId}?vote=ukpp`)
+            .expect(400)
+            .then(res => {
+              expect(res.status).to.equal(400);
+              expect(res.text).to.equal('Invalid vote command, please vote up or down.');
+              return;
+    
             });
         });
   

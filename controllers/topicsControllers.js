@@ -5,12 +5,12 @@ const articles = require('../models/articles');
 const getAllTopics = ((req, res, next) => {
   topics.find().lean()
     .then(topic => {
-      return res.json({
+      return res.status(200).json({
         topic
       }).catch(err => {
         return next({
           status: 404,
-          message: 'bad path!'
+          message: '404, page not found!'
         });
       
       });
@@ -32,7 +32,7 @@ const getArticlesByTopic = ((req, res, next) => {
     .catch(err => {
       return next({
         status: 404,
-        message: 'bad path!'
+        message: '404, page not found!'
       });
     
     });

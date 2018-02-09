@@ -153,7 +153,7 @@ describe('API endpoints', () => {
   
           });
       });
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       describe('API endpoint /users/:user_id', () => {
 
@@ -169,6 +169,34 @@ describe('API endpoints', () => {
               return;
             });
         });
+      });
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      describe('API endpoint errors to be handled', () => {
+
+        it('returns a 404 with an error message on an invalid GET request', () => {
+          return request
+            .get('/api/articles/123')
+            .expect(404)
+            .then(res => {
+              expect(res.status).to.equal(404);
+
+            });
+        });
+
+        it('returns a 404 with an error message on an invalid GET request', () => {
+          return request
+            .get('/api/articles/123/comments')
+            .expect(400)
+            .then(res => {
+              expect(res.status).to.equal(400);
+              expect(res.text).to.equal('cast error - check url');
+
+            });
+        });
+  
+      
+
       });
     });
   });

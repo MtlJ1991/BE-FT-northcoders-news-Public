@@ -10,7 +10,7 @@ const changeNumOfVotes = ((req, res, next) => {
     });
 });
 
-const  deleteComment = ((req, res, next) => {
+const deleteComment = ((req, res, next) => {
   return comments.findByIdAndRemove(req.params.comment_id).lean()
     .then(comment => {
       const commentId = req.params.comment_id;

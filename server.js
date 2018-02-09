@@ -19,12 +19,18 @@ app.use('/api', router);
 
 // error handling function 
 
-app.use(function(err, req, res, next) {
-  res.send({error: err.message});
+
+app.use((err,req,res,next) => {
+  if (err.status === 404) {
+    res.status(404).send(err.message);
+    next();
+  }
+    
 });
 
-app.use('/*', (req, res) => {
-  res.status(404).send('404! Page not found!');
+app.use((err, req, res, next) => {
+  (err.name === 'CastError') ? res.status(400).send('cast error - check url') :
+    res.status(500).json(err);
 });
 
 app.use((err, req, res, next) => {

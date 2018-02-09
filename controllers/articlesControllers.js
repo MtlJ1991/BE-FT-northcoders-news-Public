@@ -4,32 +4,31 @@ const comments = require('../models/comments');
 
 const getAllArticles = ((req, res, next ) => {
   
-
   articles.find().lean()
     .then(articles => {
-      return res.status(200).json({articles});
-    
+      res.status(200).json({ articles });
+      if(articles.length < 1) next({articles: 'error'});
     }).catch(err => {
       return next({
         status: 404,
-        message: 'bad path!'
+        message: '404, Path not found!'
       });
-    
     });
 });
 
+
 const getCommentsForArticle = ((req, res, next) => {
-  return comments.find({ belongs_to: req.params.article_id })
-    .then(comments => {
-      res.json({ comments }); 
-    }).catch(err => {
-      return next({
-        status: 404,
-        message: 'bad path!'
-      });
-  
-    });
+  const articleId = req.params.article_id;
+  if (articleId.length !== 24) next({ error: 'invalid article name length' });
+  comments.find({ belongs_to: articleId }, { __v: false })
+    .then((comments) => {
+      if (comments.length === 0) next({ error: 'empty comment' });
+      return res.json({comments});
+    })
+    .catch(next);
 });
+
+
 
 
 const addCommetsToArticle = ((req, res, next) => {
@@ -39,10 +38,9 @@ const addCommetsToArticle = ((req, res, next) => {
       res.status(201).json({ comment });
     }).catch(err => {
       return next({
-        status: 204,
-        message: 'Invalid input!'
+        status: 404,
+        message: '404, Path not found!'
       });
-    
     });
 });
 

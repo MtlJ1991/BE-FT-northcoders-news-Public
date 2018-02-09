@@ -220,6 +220,32 @@ describe('API endpoints', () => {
     
             });
         });
+
+        it('will return a 404 error for an invalid user', () => {
+          const userId = docs.user.id;
+          return request
+            .get('/api/users/1')
+            .expect(404)
+            .then(res => {
+              expect(res.status).to.equal(404);
+              expect(res.text).to.equal('404, user not found.');
+              return;
+            });
+        });
+
+        it('POST should create a new comment.', () => {
+          const articleId = docs.articles[0]._id;
+          return request
+            .post(`/api/articles/${articleId}/comments`)
+            .send({'body': ''})
+            .expect(400)
+            .then((res) => {
+              expect(res.status).to.equal(400);            
+              expect(res.text).to.equal('Invalid comment, please use the correct format');
+
+      
+            });
+        });
   
       
 

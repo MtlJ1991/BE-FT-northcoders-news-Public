@@ -25,13 +25,23 @@ app.use((err,req,res,next) => {
     res.status(404).send(err.message);
     next();
   }
-  // status: 400
-  // error.error = ???
+
   if (err.message === 'Invalid vote command, please vote up or down.') {
     res.status(400).send(err.message);
     next();
   }
+  if (err.message === 'Invalid comment, please use the correct format') {
+    res.status(400).send(err.message);
+    next();
+  }
+
+  if (err.message === '404, user not found.') {
+    res.status(404).send(err.message);
+    next();
+  }
     
+
+  
 });
 
 app.use((err, req, res, next) => {

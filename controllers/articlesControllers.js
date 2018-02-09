@@ -25,6 +25,7 @@ const getCommentsForArticle = ((req, res, next) => {
 
 
 const addCommetsToArticle = ((req, res, next) => {
+  if(req.body.body.length === 0) next({ message: 'Invalid comment, please use the correct format', status: 400 });
   const addedComment = { body: req.body.body, belongs_to: req.params.article_id };
   new comments(addedComment).save()
     .then(comment => {

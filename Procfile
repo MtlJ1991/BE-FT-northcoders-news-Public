@@ -1,1 +1,1 @@
-web: node listen.js -p $PORT
+web: node listen.js

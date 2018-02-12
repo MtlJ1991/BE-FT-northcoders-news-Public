@@ -35,6 +35,13 @@ app.use((err,req,res,next) => {
     next();
   }
 
+  if (err.message ===  'Invalid comment, can\'t remove') {
+    res.status(400).send(err.message);
+    next();
+  }
+
+
+
   if (err.message === '404, user not found.') {
     res.status(404).send(err.message);
     next();

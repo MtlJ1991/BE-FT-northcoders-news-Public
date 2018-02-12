@@ -15,16 +15,13 @@ const changeNumOfVotes = ((req, res, next) => {
 });
 
 const deleteComment = ((req, res, next) => {
+  if (req.params.comment_id.length !== 24) next({ error: 'Invalid comment, can\'t remove', status: 400});
+
   return comments.findByIdAndRemove(req.params.comment_id).lean()
     .then(comment => {
       const commentId = req.params.comment_id;
-      res.status(200).send(` comment:${commentId} has been deleted`);
-    }).catch(err => {
-      return next({
-        status: 204,
-        message: 'Comment not deleted!'
-      });
-    });
+      res.status(200).send(`comment:${commentId} has been deleted`);
+    }).catch(next);
 });
 
 module.exports = {changeNumOfVotes, deleteComment};

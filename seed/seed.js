@@ -89,8 +89,8 @@ function addTopics(done) {
     });
   }, function (error) {
     if (error) return done(error);
-    return done(null, topicDocs)
-  })
+    return done(null, topicDocs);
+  });
 }
 
 function addArticles(topicDocs, done) {
@@ -130,12 +130,12 @@ function addArticles(topicDocs, done) {
     }, function (error) {
       if (error) return cb(error);
       return cb(null, docIds);
-    })
+    });
 
   }, function (error) {
     if (error) return done(error);
-    return done(null, docIds)
-  })
+    return done(null, docIds);
+  });
 }
 
 function addComments(docIds, done) {

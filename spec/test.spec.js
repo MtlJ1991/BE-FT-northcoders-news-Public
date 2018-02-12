@@ -246,6 +246,18 @@ describe('API endpoints', () => {
       
             });
         });
+
+        it('will return an error if an invalid comment id is given when making a delete request.', () => {
+          return request
+            .delete('/api/comments/5a7da24fef50584178e3a4')
+            .expect(400)
+            .then(res => {
+              expect(res.status).to.equal(400);            
+              expect(res.text).to.equal('cast error - check url');
+              return;
+    
+            });
+        });
   
       
 

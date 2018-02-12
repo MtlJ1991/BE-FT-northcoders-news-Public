@@ -36,12 +36,12 @@ const addCommetsToArticle = ((req, res, next) => {
 
 const changeNumOfVotes = ((req, res, next) => {
   if ((req.query.vote !== 'up') && (req.query.vote !== 'down')) next({ message: 'Invalid vote command, please vote up or down.', status: 400 });
-  return articles.findByIdAndUpdate(req.params.article_id).lean()
+  return articles.findByIdAndUpdate(req.params.article_id)
     .then(article => {
       if(req.query.vote === 'up') article.votes ++;
       else if(req.query.vote === 'down') article.votes --;
-      res.json({article});
-      article.save();
+      
+      return article.save();
     }).then(article => res.status(200).send({article}))
     .catch(next);
 });

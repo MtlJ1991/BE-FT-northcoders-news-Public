@@ -35,7 +35,7 @@ Once you have the latest versions of these three, you will be ready to get start
     "supertest": "^3.0.0"
   }
 
-  2. In your console, run 'mongod' to ensure that you are connected, enabling you acces to the database.
+  2. In your terminal, run 'mongod' to ensure that you are connected, enabling you acces to the database.
   
   
   3. By using the 'npm i' command you will be able to install everything you need.
@@ -100,3 +100,14 @@ Deletes a comment
 GET /api/users/:username
 ```
 Returns a JSON object with the profile data for the specified user.
+
+
+### Tests
+
+To run tests on this application please ensure you're connected to Mongod in your terminal.
+After you're connected simply run 'npm test' which will run the test suite for both the functions and their error handling.
+All tests can be found within the spec folder.
+
+I hope you enjoy.
+
+If you encounter any issues with the application, please contact me on mtlj1991@gmail.com

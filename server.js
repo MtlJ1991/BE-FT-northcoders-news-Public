@@ -1,13 +1,14 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
 
 const router =require('./router/index');
-let express = require('express');
-let mongoose = require('mongoose');
-let bodyParser = require('body-parser');
-let app = express();
-let config = require('./config');
-let db = config.DB[process.env.NODE_ENV] || process.env.DB;
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+const config = require('./config');
+const path  = require('path');
 const cors = require('cors');
+let db = config.DB[process.env.NODE_ENV] || process.env.DB;
 
 
 
@@ -21,8 +22,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', router);
 
-// error handling function 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname+'/index.html'));
+});
 
+app.get('/api', (req, res) => {
+  res.sendFile(path.join(__dirname+'/index.html'));
+});
+// error handling function 
 
 app.use((err,req,res,next) => {
   if (err.message === 404) {

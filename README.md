@@ -2,43 +2,57 @@
 
 ### Background
 
-We will be building the API which we used in the Northcoders News Sprint during the
-Front End block of the course. Your mongoose models and a Database seed file have been done for you.
+Northcoders News is a fullstack application designed to replicate the functionality of a reddit like website.
+This section of the application is the back-end and as such will come with a set of instructions to follow.
 
-Look closely at the response you get for each route on http://northcoders-news-api.herokuapp.com/ You will notice that we also send data such as the comment and vote count for each article. You will need to think carefully about how to do this in your API.
+### Installation
 
-You will need to get all your routes built up first as you can share the functionality between you `GET comments by id` route and the comment count on the articles response for example.
+To bein with you will need to make sure you have the following installed:
 
-### Mongoose Documentation
+NodeJS - https://nodejs.org/en/
+NPM - https://www.npmjs.com/
+Mongo - https://www.mongodb.com/
 
-The below are all model methods that you call on your models.
+Once you have the latest versions of these three, you will be ready to get started.
 
-* [find](http://mongoosejs.com/docs/api.html#model_Model.find)
-* [findOne](http://mongoosejs.com/docs/api.html#model_Model.findOne)
-* [findOneAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
-* [findOneAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove)
-* [findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
-* [findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)
-* [findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove)
-* [update](http://mongoosejs.com/docs/api.html#model_Model.update)
+1. need to ensure the following dependencies are installed, as you will need them to ensure this application runs smoothly.
 
-There are also some methods that can be called on the documents that get returned. These are:
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "^1.15.2",
+    "chance": "^1.0.4",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "log4js": "^1.0.1",
+    "moment": "^2.17.0",
+    "mongoose": "^4.7.0",
+    "underscore": "^1.8.3"
+  },
 
-* [remove](http://mongoosejs.com/docs/api.html#model_Model-remove)
-* [save](http://mongoosejs.com/docs/api.html#model_Model-save)
-* [count](http://mongoosejs.com/docs/api.html#model_Model.count)
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.0",
+    "supertest": "^3.0.0"
+  }
 
-### Tasks
+  2. In your console, run 'mongod' to ensure that you are connected, enabling you acces to the database.
+  
+  
+  3. By using the 'npm i' command you will be able to install everything you need.
+  thirdly you will need to seed your database, you can do this by running 'node/seed/seed.js'
 
-1. Seed your database with the main seed file `$ node seed/seed.js`
-2. Build your express App
-3. Mount an API Router onto your app
-4. Define the routes described below
-5. Define controller functions for each of your routes
-6. Once you have all your routes start to tackle responding with the vote and comment counts on article requests like this http://northcoders-news-api.herokuapp.com/api/articles
-7. Test your api routes!
 
-### Routes
+
+
+
+### Usage
+
+To use this application please add the following routes to this url. 
+
+https://quiet-meadow-47556.herokuapp.com
+
+By using this restful api you will be able to see the data that is being returned.
+
 ```
 GET /api/topics
 ```

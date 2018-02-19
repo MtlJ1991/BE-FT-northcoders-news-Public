@@ -1,7 +1,5 @@
 const app = require('./server');
 
-
-
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
 let config = require('./config');
 let db = process.env.DB || config.DB[process.env.NODE_ENV];

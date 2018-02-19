@@ -21,6 +21,16 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+
+        "no-multiple-empty-lines": [
+            2, {"max": 3, "maxBOF": 0}],
+
+    
+        "no-multiple-empty-lines": [
+             2, {"max": 3, "maxEOF": 0}]
+    
+
+    
     }
 };

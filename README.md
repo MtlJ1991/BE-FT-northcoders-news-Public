@@ -15,37 +15,19 @@ Mongo - https://www.mongodb.com/
 
 Once you have the latest versions of these three, you will be ready to get started.
 
-1. need to ensure the following dependencies are installed, as you will need them to ensure this application runs smoothly.
 
-  "dependencies": {
-    "async": "^2.1.4",
-    "body-parser": "^1.15.2",
-    "chance": "^1.0.4",
-    "cors": "^2.8.4",
-    "express": "^4.14.0",
-    "log4js": "^1.0.1",
-    "moment": "^2.17.0",
-    "mongoose": "^4.7.0",
-    "underscore": "^1.8.3"
-  },
+  1. You need to ensure the following dependencies are installed, as you will need them to ensure this application runs smoothly.
 
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.0.0",
-    "supertest": "^3.0.0"
-  }
+  2. By using the 'npm i' command you will be able to install everything you need.
+  thirdly you will need to seed your database, you can do this by running: ``` node seed/seed.js  ```
 
-  2. In your terminal, run 'mongod' to ensure that you are connected, enabling you acces to the database.
+  3. In your terminal, run 'mongod' to ensure that you are connected, enabling you acces to the database.
   
-  
-  3. By using the 'npm i' command you will be able to install everything you need.
-  thirdly you will need to seed your database, you can do this by running 'node/seed/seed.js'
-
-
-
 
 
 ### Usage
+
+To run the database locally run the following command in the terminal: ``` npm run dev  ```
 
 To use this application please add the following routes to this url. 
 

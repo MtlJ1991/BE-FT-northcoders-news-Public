@@ -27,11 +27,10 @@ Once you have the latest versions of these three, you will be ready to get start
 
 ### Usage
 
-To run the database locally run the following command in the terminal: ``` npm run dev  ```
+  1. To run the database locally run the following command in the terminal: ``` npm run dev  ``` after you have seeded the database.
 
-To use this application please add the following routes to this url. 
+  2. In your browser, or POSTMAN connect to  ```  localhost:3000  ```
 
-https://quiet-meadow-47556.herokuapp.com
 
 By using this restful api you will be able to see the data that is being returned.
 
@@ -90,6 +89,9 @@ To run tests on this application please ensure you're connected to Mongod in you
 After you're connected simply run 'npm test' which will run the test suite for both the functions and their error handling.
 All tests can be found within the spec folder.
 
-I hope you enjoy.
+
+### Aditional information
+
 
 If you encounter any issues with the application, please contact me on mtlj1991@gmail.com
+

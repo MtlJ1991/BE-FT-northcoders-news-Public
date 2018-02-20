@@ -5,84 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
 </head>
 <body>
-    <h1>Northcoders News API</h1>
+
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h1{
+        font-size: 55px;
+    }
+
+
+    .red {
+        color: tomato;
+    }
+
+    .description{
+        font-size: 15px;
+    }
+
+</style>
+
+
+    <h1>Northcoders <span class='red'>News API</span></h1>
     <h2>Here is a list of the available endpoints.</h2>
 
-    <h3>
-        GET /api/topics <br>
+    <h2>
+        GET <span class='red'>/api/topics</span> <br>
         
-        Get all the topics
+        <span class='description'>Get all the topics</span>
 
         
-    </h3>
+    </h2>
 
-    <h3>
-        GET /api/topics/:topic_id/articles <br>
+    <h2>
+        GET <span class='red'>/api/topics/:topic_id/articles</span> <br>
         
-        Return all the articles for a certain topic
+        <span class='description'>Return all the articles for a certain topic</span>
     
         
-    </h3>
+    </h2>
 
-    <h3>
-        GET /api/articles<br>
+    <h2>
+        GET <span class='red'>/api/articles</span><br>
         
-        Returns all the articles
+        <span class='description'>Returns all the articles</span>
         
         
-    </h3>
+    </h2>
 
-    <h3>
-        GET /api/articles/:article_id/comments <br>
+    <h2>
+        GET <span class='red'>/api/articles/:article_id/comments</span> <br>
         
-        Get all the comments for a individual article
+        <span class='description'>Get all the comments for a individual article</span>
         
         
-    </h3>
+    </h2>
 
-    <h3>
-        POST /api/articles/:article_id/comments <br>
+    <h2>
+        POST <span class='red'>/api/articles/:article_id/comments</span> <br>
         
-        Add a new comment to an article. This route requires a JSON body with a comment key and value pair
-        e.g: {"comment": "This is my new comment"}
+        <span class='description'>Add a new comment to an article. This route requires a JSON body with a comment key and value pair
+        e.g: {"comment": "This is my new comment"}</span>
         
         
-    </h3>
+    </h2>
 
-    <h3>
-        PUT /api/articles/:article_id <br>
+    <h2>
+        PUT <span class='red'>/api/articles/:article_id</span> <br>
         
-        Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down'
-        e.g: /api/articles/:article_id?vote=up
+        <span class='description'>Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down'
+        e.g: /api/articles/:article_id?vote=up</span>
         
         
-    </h3>
+    </h2>
     
-    <h3>
-        PUT /api/comments/:comment_id <br>
+    <h2>
+        PUT <span class='red'>/api/comments/:comment_id</span> <br>
         
-        Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'
-        e.g: /api/comments/:comment_id?vote=down
+        <span class='description'>Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'
+        e.g: /api/comments/:comment_id?vote=down</span>
         
         
-    </h3>
+    </h2>
 
-    <h3>
-        DELETE /api/comments/:comment_id <br>
+    <h2>
+        DELETE <span class='red'>/api/comments/:comment_id</span> <br>
         
-        Deletes a comment
+        <span class='description'>Deletes a comment</span>
         
         
-    </h3>
+    </h2>
 
-    <h3>
-        GET /api/users/:username <br>
+    <h2>
+        GET <span class='red'>/api/users</span> <br>
+                
+        <span class='description'>Returns a JSON object with the profile data for all  users.</span>
+                
+    </h2>
+
+    <h2>
+        GET <span class='red'>/api/users/:username</span> <br>
         
-        Returns a JSON object with the profile data for the specified user.
+        <span class='description'>Returns a JSON object with the profile data for the specified user.</span>
         
-    </h3>
+    </h2>
+
+
 
 
 </body>

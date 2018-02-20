@@ -18,18 +18,23 @@ Once you have the latest versions of these three, you will be ready to get start
 
   1. You need to ensure the following dependencies are installed, as you will need them to ensure this application runs smoothly.
 
-  2. By using the 'npm i' command you will be able to install everything you need.
-  thirdly you will need to seed your database, you can do this by running: ``` node seed/seed.js  ```
+  2. Run ```  npm i  ``` in the terminal to install all dependencies.
 
-  3. In your terminal, run 'mongod' to ensure that you are connected, enabling you acces to the database.
+  3. Make sure you CD into the directory after cloning.
+
+  4. In your terminal, run 'mongod' to ensure that you are connected, giving you access to the database.
+
+  5. You will need to seed your database, you can do this by running: ``` node seed/seed.js  ```
+
   
 
 
 ### Usage
 
   1. To run the database locally run the following command in the terminal: ``` npm run dev  ``` after you have seeded the database.
+  2. If you're not running nodemon, ```  npm run dev  ```  will not work. Run ``` npm start  ``` instead.
 
-  2. In your browser, or POSTMAN connect to  ```  localhost:3000  ```
+  2. In your browser, or POSTMAN connect to:   http://localhost:3000/
 
 
 By using this restful api you will be able to see the data that is being returned.

@@ -98,5 +98,5 @@ All tests can be found within the spec folder.
 ### Aditional information
 
 
-If you encounter any issues with the application, please contact me on mtlj1991@gmail.com
+
 

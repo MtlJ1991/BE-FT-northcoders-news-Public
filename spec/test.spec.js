@@ -44,6 +44,17 @@ describe('API endpoints', () => {
         });
     });
 
+    it('GET /users returns an object of all users', () => {
+      return request
+        .get('/api/users')
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.an('object');
+          expect(res.body.users.length).to.be.eql(1);
+          return;
+        });
+    });
+
     it('GET /topics/:topic_id/articles returns an object of all articles related to that topic', () => {
       return request
         .get('/api/topics/Football/articles')

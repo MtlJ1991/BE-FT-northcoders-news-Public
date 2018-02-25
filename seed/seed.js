@@ -52,7 +52,7 @@ function addNorthcoderUser(done) {
 }
 
 function addUsers(done) {
-  logger.info('adding users')
+  logger.info('adding users');
   async.eachSeries(userData, function (user, cb) {
     var userDoc = new models.Users(user);
     userDoc.save(function (err) {

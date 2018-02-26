@@ -5,9 +5,11 @@
 Northcoders News is a fullstack application designed to replicate the functionality of a reddit like website.
 This section of the application is the back-end and as such will come with a set of instructions to follow.
 
+This application is hosted online, you can see it in action here: https://quiet-meadow-47556.herokuapp.com/
+
 ### Installation
 
-To bein with you will need to make sure you have the following installed:
+To begin with you will need to make sure you have the following installed:
 
 NodeJS - https://nodejs.org/en/
 NPM - https://www.npmjs.com/
@@ -18,11 +20,11 @@ Once you have the latest versions of these three, you will be ready to get start
 
   1. You need to ensure the following dependencies are installed, as you will need them to ensure this application runs smoothly.
 
-  2. Run ```  npm i  ``` in the terminal to install all dependencies.
+  2. Make sure you CD into the directory after cloning.
 
-  3. Make sure you CD into the directory after cloning.
+  3. Run ```  npm i  ``` in the terminal to install all dependencies.
 
-  4. In your terminal, run 'mongod' to ensure that you are connected, giving you access to the database.
+  4. In your terminal, run 'mongod' in a seperate window and keep it running, to ensure that you are connected, giving you access to the database.
 
   5. You will need to seed your database, you can do this by running: ``` node seed/seed.js  ```
 
@@ -91,7 +93,11 @@ Returns a JSON object with the profile data for the specified user.
 ### Tests
 
 To run tests on this application please ensure you're connected to Mongod in your terminal.
-After you're connected simply run 'npm test' which will run the test suite for both the functions and their error handling.
+After you're connected simply run:
+
+```npm test```
+
+which will run the test suite for both the functions and their error handling.
 All tests can be found within the spec folder.
 
 

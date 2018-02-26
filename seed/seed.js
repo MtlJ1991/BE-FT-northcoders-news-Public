@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var models = require('../models/models');
 var userData = require('./data/user_data.js');
 var articleData = require('./data/articles');
@@ -5,15 +7,18 @@ var Chance = require('chance');
 var chance = new Chance();
 var _ = require('underscore');
 var async = require('async');
-var mongoose = require('mongoose');
 var log4js = require('log4js');
 var logger = log4js.getLogger();
 var moment = require('moment');
-var DBs = require('../config').DB;
+var DB = require('../config').DB;
 
-mongoose.connect(DBs.dev, function (err) {
+const options = {
+  useMongoClient: true
+};
+
+mongoose.connect(DB.dev, options, function (err) {
   if (!err) {
-    logger.info(`connected to database ${DBs.dev}`);
+    logger.info(`connected to database ${DB.dev}`);
     mongoose.connection.db.dropDatabase();
     async.waterfall([
       addUsers,
